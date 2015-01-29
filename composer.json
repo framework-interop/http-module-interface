@@ -1,0 +1,25 @@
+{
+	"name" : "framework-interop/http-module-interface",
+	"description" : "The interface for framework-agnostic modules that provide a HTTP middleware",
+	"authors" : [
+		{
+			"name" : "David Négrier",
+			"email" : "d.negrier@thecodingmachine.com",
+			"homepage" : "http://mouf-php.com"
+		}
+	],
+	"keywords" : [
+		"framework-interop"
+	],
+	"homepage" : "http://github.com/framework-interop/http-module-interface",
+	"license" : "MIT",
+	"require" : {
+		"framework-interop/module-interface" : "~1.0",
+		"symfony/http-kernel": "~2.0"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Interop\\Framework\\" : "src/"
+		}
+	}
+}
