@@ -15,8 +15,12 @@
 	"license" : "MIT",
 	"require" : {
 		"framework-interop/module-interface" : "~1.0",
-		"symfony/http-kernel": "~2.0"
+		"psr/http-message": "~1.0"
 	},
+    "suggest": {
+        "zendframework/zend-stratigility": "",
+        "zendframework/zend-diactoros": ""
+    },
 	"autoload" : {
 		"psr-4" : {
 			"Interop\\Framework\\" : "src/"

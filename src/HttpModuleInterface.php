@@ -10,10 +10,10 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 interface HttpModuleInterface extends ModuleInterface
 {
 	/**
-	 * You should return a StackPHP middleware.
+	 * You should return a PSR-7 middleware (in the formats understood by zend/stratigility,
+	 * i.e. a callable or an object implementing the MiddlewareInterface).
 	 *
-	 * @param $app HttpKernelInterface The kernel your middleware will be wrapping.
-	 * @return HttpKernelInterface
+	 * @return MiddlewareInterface|callable
 	 */
-	public function getHttpMiddleware(HttpKernelInterface $app);
+	public function getHttpMiddleware();
 }

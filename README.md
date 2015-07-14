@@ -2,7 +2,7 @@ HttpModuleInterface
 ===================
 
 This package contains the base interface to build framework-agnostic **modules**
-that provides a [StackPHP middleware](http://stackphp.com).
+that provides a [PSR-7 middleware](http://stackphp.com).
 
 ##Framework-agnostic modules?
 
@@ -15,8 +15,14 @@ Framework agnostic modules should implement the [`ModuleInterface`](http://githu
 
 If your module provides a router, or should catch incoming HTTP requests,
 you should implement the `HttpModuleInterface`. It is a special kind of
-module that allows you to provide a StackPHP middleware. The middleware can
+module that allows you to provide a PSR-7 middleware. The middleware can
 catch incoming requests and react accordingly.
+
+## PSR-7 middleware?
+
+PSR-7 does not directly specify middlewares, it's only a PSR about request and response objects. However, 
+middlewares have been built on top of PSR-7. The most common one is the middleware used by *zend/stratigility* and 
+the one you should use to work with the `HttpModuleInterface`. 
 
 ## How to write an HTTP module
 
@@ -25,13 +31,13 @@ You start by writing a class that implements `Interop\Framework\HttpModuleInterf
 ```php
 namespace Acme\BlogModule;
 
-class SilexModule extends ModuleInterface
+class Slim3Module extends ModuleInterface
 {
     private $rootContainer;
 
     public function getName()
     {
-        return 'silexRouter';
+        return 'slim3Router';
     }
 
     /**
@@ -45,7 +51,7 @@ class SilexModule extends ModuleInterface
     {
         $rootContainer = $this->rootContainer;
         return new Picotainer([
-            "silexApp" => function() { return new Silex\Application($rootContainer); }
+            "slimApp" => function() { return new Slim\Slim(); }
         ], $rootContainer);
     }
 
@@ -57,7 +63,7 @@ class SilexModule extends ModuleInterface
 		}
 
     public function getHttpMiddleware(HttpKernelInterface $app) {
-		    return new SilexMiddleware($app, $this->rootContainer->get('silexApp'));
+		    return new TODO CHANGE REFERENCE TO SLIM SilexMiddleware($app, $this->rootContainer->get('silexApp'));
 	  }
 }
 ```
